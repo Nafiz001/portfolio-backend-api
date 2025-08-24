@@ -47,31 +47,18 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        if (builder.Environment.IsDevelopment())
-        {
-            // Development CORS - allow localhost
-            policy.WithOrigins(
-                "https://nafiz001.github.io", // Your GitHub Pages domain
-                "https://portfoliio-frontend.vercel.app", // Your actual Vercel domain
-                "https://*.vercel.app" // Allow all Vercel subdomains
-                )
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials()
-            .SetIsOriginAllowed(_ => true); // Allow any origin during development
-        }
-        else
-        {
-            // Production CORS - allow specific domains
-            policy.WithOrigins(
-                "https://nafiz001.github.io", // Your GitHub Pages domain
-                "https://your-vercel-app.vercel.app", // Your Vercel domain (update this)
-                "https://*.vercel.app" // Allow all Vercel subdomains
-            )
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
-        }
+        // Always allow both development and production domains
+        policy.WithOrigins(
+            "http://localhost:3000", // Local development
+            "http://localhost:5000", // Local backend
+            "https://nafiz001.github.io", // Your GitHub Pages domain
+            "https://portfoliio-frontend.vercel.app", // Your Vercel domain
+            "https://*.vercel.app" // Allow all Vercel subdomains
+        )
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()
+        .SetIsOriginAllowed(_ => true); // Allow any origin for easier debugging
     });
 });
 
