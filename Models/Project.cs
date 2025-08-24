@@ -15,7 +15,7 @@ namespace PortfolioAPI.Models
         public string Description { get; set; } = string.Empty;
         
         [Required]
-        [Url]
+        [ImageUrlOrDataUrl]
         public string Image { get; set; } = string.Empty;
         
         [Required]
