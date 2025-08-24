@@ -51,11 +51,10 @@ builder.Services.AddCors(options =>
         {
             // Development CORS - allow localhost
             policy.WithOrigins(
-                "http://localhost:3000",
-                "http://localhost:5000",
-                "http://127.0.0.1:5500", // For Live Server during development
-                "file://" // For local file access during development
-            )
+                "https://nafiz001.github.io", // Your GitHub Pages domain
+                "https://portfoliio-frontend.vercel.app", // Your actual Vercel domain
+                "https://*.vercel.app" // Allow all Vercel subdomains
+                )
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials()
